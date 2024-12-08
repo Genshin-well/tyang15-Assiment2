@@ -52,7 +52,34 @@ public class AssignmentTwo {
     }
 
     public void partFourA() {
+        // Part 4A implementation
+        Employee operator = new Employee("Alice", 35, "Female", "E101", "Ride Operator");
+        Ride rollerCoaster = new Ride("Roller Coaster", 2, operator);
 
+        // Create 5 new visitors with varied data
+        Visitor visitor1 = new Visitor("Tom", 27, "Male", "V201", 67890);
+        Visitor visitor2 = new Visitor("Grace", 23, "Female", "V202", 34567);
+        Visitor visitor3 = new Visitor("Jack", 29, "Male", "V203", 24680);
+        Visitor visitor4 = new Visitor("Lucy", 26, "Female", "V204", 13579);
+        Visitor visitor5 = new Visitor("Matthew", 32, "Male", "V205", 86420);
+
+        // Add visitors to the ride history
+        rollerCoaster.addVisitorToHistory(visitor1);
+        rollerCoaster.addVisitorToHistory(visitor2);
+        rollerCoaster.addVisitorToHistory(visitor3);
+        rollerCoaster.addVisitorToHistory(visitor4);
+        rollerCoaster.addVisitorToHistory(visitor5);
+
+        // Check if a visitor is in the ride history
+        rollerCoaster.checkVisitorFromHistory(visitor3);
+        rollerCoaster.checkVisitorFromHistory(new Visitor("Demo", 29, "Male", "V206", 55555));
+
+        // Print the total number of visitors in ride history
+        System.out.println("\nTotal visitors in ride history: " + rollerCoaster.numberOfVisitors());
+
+        // Print all visitors in the ride history
+        System.out.println("\nAll visitors in ride history:");
+        rollerCoaster.printRideHistory();
     }
 
     public void partFourB() {

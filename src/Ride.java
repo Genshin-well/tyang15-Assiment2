@@ -142,7 +142,8 @@ public class Ride implements RideInterface {
     @Override
     public boolean checkVisitorFromHistory(Visitor visitor) {
         boolean found = rideHistory.contains(visitor); // Checks if the visitor is in the history
-        
+        System.out.printf("%s is %s in the ride history for %s.%n", visitor.getName(),
+                (found ? "" : "not "), rideName);
         return found;
     }
 
@@ -153,12 +154,19 @@ public class Ride implements RideInterface {
 
     @Override
     public void printRideHistory() {
-
+        if (rideHistory.isEmpty()) {
+            System.out.printf("No visitors have taken the ride %s yet.%n", rideName);
+        } else {
+            System.out.printf("Ride history for %s:%n", rideName);
+            rideHistory.forEach(visitor ->
+                    System.out.printf("- %s (Age: %d)%n", visitor.getName(), visitor.getAge()));
+        }
     }
 
     // Sort the ride history
     public void sortRideHistory() {
-
+        rideHistory.sort(new VisitorComparator()); // Improved readability using method reference
+        System.out.println("Ride history has been sorted.");
     }
 
 }
