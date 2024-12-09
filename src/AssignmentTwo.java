@@ -83,7 +83,36 @@ public class AssignmentTwo {
     }
 
     public void partFourB() {
-       
+        // Part 4B implementation
+        Employee operator = new Employee("Bob", 40, "Male", "E102", "Ride Operator");
+        Ride thunderStorm = new Ride("Thunderstorm", 4, operator);
+
+        // Create 6 new visitors with varied data
+        Visitor visitor1 = new Visitor("Tom", 25, "Male", "V101", 12345);
+        Visitor visitor2 = new Visitor("Sheryl", 22, "Female", "V102", 67890);
+        Visitor visitor3 = new Visitor("Ben", 28, "Male", "V103", 54321);
+        Visitor visitor4 = new Visitor("David", 24, "Female", "V104", 98765);
+        Visitor visitor5 = new Visitor("Jack", 30, "Male", "V105", 11223);
+        Visitor visitor6 = new Visitor("Lee", 30, "Female", "V106", 33211);
+
+        // Add visitors to the ride history
+        thunderStorm.addVisitorToHistory(visitor1);
+        thunderStorm.addVisitorToHistory(visitor2);
+        thunderStorm.addVisitorToHistory(visitor3);
+        thunderStorm.addVisitorToHistory(visitor4);
+        thunderStorm.addVisitorToHistory(visitor5);
+        thunderStorm.addVisitorToHistory(visitor6);
+
+        // Print all visitors before sorting
+        System.out.println("\nVisitors before sorting:");
+        thunderStorm.printRideHistory();
+
+        // Sort the ride history
+        thunderStorm.sortRideHistory();
+
+        // Print all visitors after sorting
+        System.out.println("\nVisitors after sorting:");
+        thunderStorm.printRideHistory();
     }
 
     public void partFive() {
