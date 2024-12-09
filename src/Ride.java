@@ -169,4 +169,42 @@ public class Ride implements RideInterface {
         System.out.println("Ride history has been sorted.");
     }
 
+    // Export ride history to a CSV file
+    public void exportRideHistory(String filename) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filename))) {
+            // Write each visitor's data to the file
+            for (Visitor visitor : rideHistory) {
+                writer.write(String.format("%s,%d,%s,%s,%d%n", visitor.getName(), visitor.getAge(),
+                        visitor.getGender(), visitor.getTicketId(), visitor.getMembershipId()));
+            }
+            System.out.printf("Ride history has been successfully exported to %s%n", filename);
+        } catch (IOException e) {
+            System.out.println("An error occurred while exporting ride history: " + e.getMessage());
+        }
+    }
+
+    // Import ride history from a CSV file
+    public void importRideHistory(String filename) {
+        try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {
+            String line;
+            // Read each line of the file
+            while ((line = reader.readLine()) != null) {
+                String[] data = line.split(","); // Split the line by commas
+                if (data.length == 5) {  // Ensure that the data is complete
+                    // Create a new Visitor object and add it to the queue
+                    String name = data[0];
+                    int age = Integer.parseInt(data[1]);
+                    String gender = data[2];
+                    String ticketId = data[3];
+                    int membershipId = Integer.parseInt(data[4]);
+
+                    Visitor visitor = new Visitor(name, age, gender, ticketId, membershipId);
+                    visitorQueue.add(visitor);
+                }
+            }
+            System.out.printf("Ride history has been successfully imported from %s%n", filename);
+        } catch (IOException | NumberFormatException e) {
+            System.out.println("An error occurred while importing ride history: " + e.getMessage());
+        }
+    }
 }
